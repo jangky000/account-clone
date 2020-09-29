@@ -65,16 +65,35 @@
   - jwt 적용
   - 인증 미들웨어 개발, isLoggedIn 등
 
+## Route URL
+
+- **인증**
+- POST /api/auth/login
+- GET /api/auth/logout
+
+- **회원가입**
+- POST /api/member/
+
+- **log**
+- GET /api/log/
+- POST /api/log/
+
+- **calendar**
+- GET /api/calendar/
+
+- **status**
+- GET /api/status/
+
 ## 개발 진행
 
 ### day1
 
-- <Server>
+- **Server**
 - express 템플릿 설정
 - ESlint, prettier 설정
 - dotenv 설정
 
-- <Client>
+- **Client**
 - webpack 설정
 - babel loader 설정
 - polyfill 설정
@@ -85,4 +104,5 @@
 ### day2
 
 - sql문 작성
+- scss loader 적용
 -
