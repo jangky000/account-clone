@@ -1,3 +1,5 @@
 node_modules
 .env
-client/public
+client/public/bundle.js
+client/public/index.html
+README.md
