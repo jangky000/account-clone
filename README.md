@@ -24,7 +24,7 @@
 - 카테고리
   - 카테고리
 
-![WEEK5 ERD](https://user-images.githubusercontent.com/46799722/94427851-b5336d00-01ca-11eb-989a-0a09d4895084.JPG)
+![w5ERD](https://user-images.githubusercontent.com/46799722/94554257-c8ab0a80-0294-11eb-9151-3cd3e7ce3c07.JPG)
 
 - 추가 고려사항
   - 사용자마다 결제 수단을 추가할 수 있다 → 사용자마다 결제 수단이 다르다.
