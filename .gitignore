@@ -2,4 +2,3 @@ node_modules
 .env
 client/public/bundle.js
 client/public/index.html
-README.md
