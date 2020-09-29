@@ -64,3 +64,14 @@
   - passport
   - jwt 적용
   - 인증 미들웨어 개발, isLoggedIn 등
+
+## 개발 진행
+
+### day1
+
+-
+
+### day2
+
+- sql문 작성
+-
