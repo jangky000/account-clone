@@ -1,16 +1,16 @@
 # member
-# : memno, uid, pw, mname, email, create_time
+# : memno, uid, pw, mname
 
 # Create
-INSERT INTO member(uid, pw, mname, email, create_time) VALUES('user1', '1234', '사용자1', 'user1@gmail.com', NOW());
-INSERT INTO member(uid, pw, mname, email, create_time) VALUES('user2', '1234', '사용자2', 'user2@gmail.com', NOW());
+INSERT INTO member(uid, pw, mname) VALUES('user1', '1234', '사용자1');
+INSERT INTO member(uid, pw, mname) VALUES('user2', '1234', '사용자2');
 
 # List
-SELECT memno, uid, pw, mname, email, create_time FROM member;
+SELECT memno, uid, pw, mname FROM member;
 
 # Read
-SELECT memno, uid, mname, email, create_time FROM member WHERE memno = 1;
-SELECT memno, uid, mname, email, create_time FROM member WHERE uid = 'user1';
+SELECT memno, uid, mname FROM member WHERE memno = 1;
+SELECT memno, uid, mname FROM member WHERE uid = 'user1';
 
 # pw check
 SELECT pw FROM member WHERE uid = 'user1';

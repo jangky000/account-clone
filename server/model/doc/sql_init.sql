@@ -9,14 +9,14 @@ CREATE TABLE member (
 	uid VARCHAR(50) NOT NULL,
 	pw VARCHAR(50) NOT NULL,
 	mname VARCHAR(50) NOT NULL,
-	email VARCHAR(255) NOT NULL,
-	create_time DATETIME NOT NULL,
 	PRIMARY KEY (memno),
 	UNIQUE INDEX id (uid)
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
+AUTO_INCREMENT=3
 ;
+
 
 CREATE TABLE category (
 	cateno INT(11) NOT NULL AUTO_INCREMENT,
