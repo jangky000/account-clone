@@ -16,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
         unique: "id",
       },
       pw: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(64),
         allowNull: false,
       },
       mname: {
