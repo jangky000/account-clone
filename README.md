@@ -105,4 +105,12 @@
 
 - sql문 작성
 - scss loader 적용
--
+- auth, member 라우트 생성
+- DB config 설정, memberDB 생성
+
+### day3
+
+- memberDB sequalize 적용
+- bcrypt 적용
+- passport local 인증 기능 추가
+- passport jwt 인증 기능 추가
