@@ -1,8 +1,11 @@
 const createError = require("http-errors");
 const express = require("express");
-const path = require("path");
+// const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+
+const passport = require("passport");
+const passportConfig = require("./utils/passport");
 
 const authRouter = require("./routes/auth");
 const memberRouter = require("./routes/member");
@@ -13,7 +16,10 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
+
+app.use(passport.initialize());
+passportConfig();
 
 app.use("/api/auth", authRouter);
 app.use("/api/member", memberRouter);
