@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { jwtAuthReq } = require("../utils/auth");
+const { jwtAuthReq } = require("../middleware/auth");
 
 const { registerCont } = require("../controller/registerCont");
 
