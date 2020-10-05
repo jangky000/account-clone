@@ -74,9 +74,9 @@
 - **회원가입**
 - POST /api/member/
 
-- **log**
-- GET /api/log/
-- POST /api/log/
+- **account**
+- GET /api/account/
+- POST /api/account/
 
 - **calendar**
 - GET /api/calendar/
@@ -120,3 +120,4 @@
 - 컨트롤러 리팩토링
 - redis 설치, 테스트, 적용 여부는 미정
 - token을 쿠키에 저장
+- 가계부 내역 라우터 작업 중
