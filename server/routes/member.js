@@ -1,26 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const bcrypt = require("../utils/bcrypt");
-const memberModel = require("../models").member;
+const { jwtAuthReq } = require("../utils/auth");
 
-router.post("/", async function (req, res, next) {
-  const { uid, pw, mname } = req.body;
+const { registerCont } = require("../controller/registerCont");
 
-  const memberData = {
-    uid: uid,
-    pw: await bcrypt.hashingPw(pw),
-    mname: mname,
-  };
-
-  try {
-    const result = await memberModel.create(memberData);
-    res.status(200).json({ success: true, memno: result.dataValues.memno });
-  } catch (error) {
-    console.log(error);
-    next({ message: "Can't create member" });
-  }
-});
+// 회원가입
+router.post("/", jwtAuthReq, registerCont);
 
 // test
 router.get("/", async function (req, res, next) {
