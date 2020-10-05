@@ -16,12 +16,14 @@ exports.localAuthReq = (req, res, next) => {
         return;
       }
 
+      const token = createJWT({
+        uid: member.dataValues.uid,
+        mname: member.dataValues.mname,
+      });
+
       res.status(200).json({
         success: true,
-        token: createJWT({
-          uid: member.dataValues.uid,
-          mname: member.dataValues.mname,
-        }),
+        token: token,
       });
     });
   })(req, res, next);

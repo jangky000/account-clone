@@ -114,3 +114,8 @@
 - bcrypt 적용
 - passport local 인증 기능 추가
 - passport jwt 인증 기능 추가
+
+### day4
+
+- 컨트롤러 리팩토링
+- redis 설치, 테스트, 적용 여부는 미정
