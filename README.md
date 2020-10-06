@@ -75,7 +75,7 @@
 - POST /api/member/
 
 - **account**
-- GET /api/account/
+- GET /api/account/:year/:month
 - POST /api/account/
 
 - **calendar**
@@ -121,3 +121,7 @@
 - redis 설치, 테스트, 적용 여부는 미정
 - token을 쿠키에 저장
 - 가계부 내역 라우터 작업 중
+
+### day5
+
+- 가계부 get 기능 완성

@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define(
+  const category = sequelize.define(
     "category",
     {
       cateno: {
@@ -26,4 +26,12 @@ module.exports = function (sequelize, DataTypes) {
       tableName: "category",
     }
   );
+
+  category.associate = function (models) {
+    category.hasMany(models.account_log, {
+      foreignKey: "cateno",
+    });
+  };
+
+  return category;
 };

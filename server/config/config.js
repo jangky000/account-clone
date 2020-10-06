@@ -11,6 +11,12 @@ module.exports = {
     database: DB_DATABASE,
     host: DB_HOST,
     dialect: "mysql",
+    timezone: "+09:00",
+    dialectOptions: {
+      charset: "utf8mb4",
+      dateStrings: true,
+      typeCast: true,
+    },
   },
   test: {
     username: DB_USER,
@@ -25,5 +31,11 @@ module.exports = {
     database: DB_DATABASE,
     host: DB_HOST,
     dialect: "mysql",
+    timezone: "+09:00",
+    dialectOptions: {
+      charset: "utf8mb4",
+      dateStrings: true,
+      typeCast: true,
+    },
   },
 };

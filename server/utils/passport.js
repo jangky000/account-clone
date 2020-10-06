@@ -37,7 +37,6 @@ const JWTConfig = {
 };
 
 const JWTVerify = async (jwtPayload, done) => {
-  console.log("1");
   try {
     const row = await memberModel.findOne({ where: { uid: jwtPayload.uid } });
     console.log(row);

@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define(
+  const account_log = sequelize.define(
     "account_log",
     {
       logno: {
@@ -25,28 +25,6 @@ module.exports = function (sequelize, DataTypes) {
         },
         unique: "FK_account_log_member",
       },
-      cateno: {
-        type: DataTypes.INTEGER(11),
-        allowNull: true,
-        references: {
-          model: {
-            tableName: "category",
-          },
-          key: "cateno",
-        },
-        unique: "FK_transaction_category",
-      },
-      payno: {
-        type: DataTypes.INTEGER(11),
-        allowNull: true,
-        references: {
-          model: {
-            tableName: "pay_method",
-          },
-          key: "payno",
-        },
-        unique: "FK_transaction_pay_method",
-      },
       money: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
@@ -65,4 +43,15 @@ module.exports = function (sequelize, DataTypes) {
       tableName: "account_log",
     }
   );
+
+  account_log.associate = function (models) {
+    account_log.belongsTo(models.category, {
+      foreignKey: "cateno",
+    });
+    account_log.belongsTo(models.pay_method, {
+      foreignKey: "payno",
+    });
+  };
+
+  return account_log;
 };

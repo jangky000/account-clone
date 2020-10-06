@@ -9,6 +9,7 @@ exports.jwtAuthReq = (req, res, next) => {
     { session: false },
     (jwtErr, member, message) => {
       if (member) {
+        res.locals.member = member;
         next();
       } else {
         console.log(jwtErr);

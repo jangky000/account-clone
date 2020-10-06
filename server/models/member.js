@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define(
+  const member = sequelize.define(
     "member",
     {
       memno: {
@@ -29,4 +29,10 @@ module.exports = function (sequelize, DataTypes) {
       tableName: "member",
     }
   );
+  member.associate = function (models) {
+    member.hasMany(models.pay_method, {
+      foreignKey: "memno",
+    });
+  };
+  return member;
 };
