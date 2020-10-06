@@ -9,6 +9,7 @@ const passportConfig = require("./utils/passport");
 const authRouter = require("./routes/auth");
 const memberRouter = require("./routes/member");
 const accountRouter = require("./routes/account");
+const statusRouter = require("./routes/status");
 
 const app = express();
 
@@ -23,6 +24,7 @@ passportConfig();
 app.use("/api/auth", authRouter);
 app.use("/api/member", memberRouter);
 app.use("/api/account", accountRouter);
+app.use("/api/status", statusRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

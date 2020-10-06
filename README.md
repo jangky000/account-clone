@@ -78,11 +78,10 @@
 - GET /api/account/:year/:month
 - POST /api/account/
 
-- **calendar**
-- GET /api/calendar/
-
 - **status**
-- GET /api/status/
+- GET /api/status/category/expense/:year/:month
+- GET /api/status/date/expense/:year/:month
+- GET /api/status/date/income/:year/:month
 
 ## 개발 진행
 
@@ -124,4 +123,5 @@
 
 ### day5
 
-- 가계부 get 기능 완성
+- 가계부 내역 조회/삽입/수정/삭제 구현
+- 가계부 카테고리별, 일별 지출/수입 통계 조회 구현

@@ -6,6 +6,46 @@ const payMethodModel = require("../models").pay_method;
 
 const { dashDate, firstLastDay } = require("../utils/date");
 
+/*
+응답 형식:
+{
+  success: true,
+  logs: logs
+}
+
+// logs 형식
+{
+  2020-10-05: {
+    date: 2020-10-05,
+    dayname: 월,
+    tot_income: 0,
+    tot_expense: 0,
+    contents: [
+      {
+        iemode: ,
+        cateno: ,
+        catename: ,
+        memo: ,
+        payno: ,
+        payname: ,
+        money: ,
+      },
+      ...
+    ],
+  },
+  ...
+}
+*/
+
+exports.getAccountLogsCont = async (req, res, next) => {
+  const year = req.params.year;
+  const month = req.params.month;
+  const { firstDay, lastDay } = firstLastDay(year, month);
+  const list = await getAccountLogByDate(firstDay, lastDay);
+  const logs = accountLogFormatting(list);
+  res.status(200).json({ success: true, logs: logs });
+};
+
 // 최신순으로 내역 데이터 읽어오기
 const getAccountLogByDate = async (firstDay, lastDay) => {
   return accountLogModel.findAll({
@@ -69,44 +109,4 @@ const accountLogFormatting = (list) => {
     addContent(logObj[date], row);
   });
   return logObj;
-};
-
-/*
-응답 형식:
-{
-  success: true,
-  logs: logs
-}
-
-// logs 형식
-{
-  2020-10-05: {
-    date: 2020-10-05,
-    dayname: 월,
-    tot_income: 0,
-    tot_expense: 0,
-    contents: [
-      {
-        iemode: ,
-        cateno: ,
-        catename: ,
-        memo: ,
-        payno: ,
-        payname: ,
-        money: ,
-      },
-      ...
-    ],
-  },
-  ...
-}
-*/
-
-exports.getAccountLogsCont = async (req, res, next) => {
-  const year = req.params.year;
-  const month = req.params.month;
-  const { firstDay, lastDay } = firstLastDay(year, month);
-  const list = await getAccountLogByDate(firstDay, lastDay);
-  const logs = accountLogFormatting(list);
-  res.status(200).json({ success: true, logs: logs });
 };
