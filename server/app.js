@@ -2,6 +2,7 @@ const createError = require("http-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const cors = require("cors");
 
 const passport = require("passport");
 const passportConfig = require("./utils/passport");
@@ -17,6 +18,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(cors({ origin: true, credentials: true }));
 
 app.use(passport.initialize());
 passportConfig();
