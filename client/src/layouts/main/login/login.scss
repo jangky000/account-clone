@@ -1,0 +1,27 @@
+// login
+.login_box {
+  width: 30%;
+  min-width: 300px;
+  height: fit-content;
+  margin: 3% auto;
+
+  background-color: #fff;
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgb(194, 194, 194);
+}
+
+.login_title h2 {
+  display: inline-block;
+  padding: 10px 0;
+  margin: 20px 20px;
+  border-bottom: 1px solid #d1d5da;
+}
+
+.login_box input {
+  width: 80%;
+}
+
+.login_box button {
+  width: 80%;
+}

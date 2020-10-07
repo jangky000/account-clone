@@ -1,3 +1,132 @@
-body {
-  background-color: rgb(145, 145, 145);
+@import "./reset.scss";
+
+// 공통 요소 -> lib 등에 모아두면 좋을 것 같음, 예를 들어 button
+
+html {
+  font-family: "Nanum Gothic", sans-serif;
+  letter-spacing: 5px;
+  height: 100%;
 }
+
+body {
+  height: 100%;
+}
+
+a {
+  all: unset;
+  color: inherit;
+  &:hover {
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 0 0 1px;
+  }
+  &:focus {
+    font-weight: bold;
+    outline: auto;
+    text-shadow: 0 0 1px;
+  }
+}
+
+// input
+.inputBasic {
+  border-radius: 5px;
+  border: 1px solid rgb(170, 170, 170);
+  background-color: rgb(230, 230, 230);
+  margin: 5px 0;
+  padding: 10px 10px;
+  &:focus {
+    background-color: #fff;
+    box-shadow: 0 0 5px #003cff62;
+    outline: none;
+  }
+}
+
+// button
+.btnBasic {
+  all: unset;
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 10px 10px;
+  color: white;
+  background-color: #29b6af;
+  text-align: center;
+  margin: 20px 0;
+  &:hover {
+    cursor: pointer;
+    background-color: #208d88;
+  }
+  &:focus {
+    background-color: #208d88;
+    box-shadow: 0 0 5px #003cff62;
+  }
+}
+
+.btnRed {
+  all: unset;
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 10px 10px;
+  color: white;
+  background-color: #df3c47;
+  text-align: center;
+  margin: 20px 0;
+  &:hover {
+    cursor: pointer;
+    background-color: #b33139;
+  }
+  &:focus {
+    background-color: #b33139;
+  }
+}
+
+.width100 {
+  width: 100%;
+}
+
+.height100 {
+  height: 100%;
+}
+
+// font
+.fontH1 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.fontH2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.fontWhite {
+  color: white;
+}
+
+.flexRow {
+  display: flex;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexCenterCenter {
+  justify-content: center;
+  align-items: center;
+}
+
+.flexAuto {
+  flex: auto;
+}
+
+#layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  position: relative;
+}
+
+// main layout

@@ -1,0 +1,18 @@
+// header layout
+#header {
+  background-color: #29b6af81;
+  box-shadow: 0 0 10px rgb(134, 134, 134);
+  height: 100px;
+  position: relative;
+}
+
+.headTitle {
+  color: white;
+  letter-spacing: 10px;
+}
+
+.payMethodManage {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}

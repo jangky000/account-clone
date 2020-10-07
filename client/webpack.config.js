@@ -4,6 +4,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: "./src/app.js",
+  resolve: {
+    alias: {
+      "@layouts": path.resolve(__dirname, "src/layouts"),
+      "@utils": path.resolve(__dirname, "src/utils"),
+      "@elements": path.resolve(__dirname, "src/elements"),
+    },
+  },
   output: {
     path: path.resolve(__dirname, "public"),
     filename: "bundle.js",
