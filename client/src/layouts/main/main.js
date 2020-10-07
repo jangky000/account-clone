@@ -16,4 +16,7 @@ export default class Main {
     `;
     return html;
   }
+  addEvent() {
+    this.login.addEvent();
+  }
 }
