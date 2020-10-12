@@ -1,8 +1,8 @@
 import "core-js/modules/es.array.flat";
 import css from "./style.scss";
 
-import Header from "@layouts/header/header.js";
-import Main from "@layouts/main/main.js";
+import Header from "@views/header/header.js";
+import Main from "@views/main/main.js";
 
 layout.insertAdjacentHTML("beforeend", new Header().render());
 

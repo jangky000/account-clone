@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -p 8000 --proxy http://localhost:7000",
     "dev": "webpack-dev-server --open",
     "build": "npx webpack"
   },

@@ -6,7 +6,7 @@ module.exports = {
   entry: "./src/app.js",
   resolve: {
     alias: {
-      "@layouts": path.resolve(__dirname, "src/layouts"),
+      "@views": path.resolve(__dirname, "src/views"),
       "@utils": path.resolve(__dirname, "src/utils"),
       "@elements": path.resolve(__dirname, "src/elements"),
     },
