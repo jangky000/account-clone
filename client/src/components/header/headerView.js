@@ -1,8 +1,10 @@
 import scss from "./header.scss";
 
-export default class HeaderView {
+import { layout } from "@elements/elements.js";
+
+class HeaderView {
   render() {
-    let html = `
+    let headerHTML = `
       <div id="header">
         <h1 class="headTitle fontH1 height100 flexRow flexCenterCenter">
           가계부
@@ -12,6 +14,9 @@ export default class HeaderView {
         </div>
       </div>
     `;
-    return html;
+    layout.insertAdjacentHTML("beforeend", headerHTML);
   }
 }
+
+const headerView = new HeaderView();
+export default headerView;

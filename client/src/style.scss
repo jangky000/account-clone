@@ -39,6 +39,16 @@ a {
   }
 }
 
+.underlineInput {
+  border: none;
+  border-bottom: 1px solid rgb(214, 214, 214);
+  margin: 0 20px;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px #29b6af;
+  }
+}
+
 // button
 .btnBasic {
   all: unset;
@@ -49,6 +59,7 @@ a {
   background-color: #29b6af;
   text-align: center;
   margin: 20px 0;
+
   &:hover {
     cursor: pointer;
     background-color: #208d88;
@@ -77,8 +88,39 @@ a {
   }
 }
 
+.btnBasicSmall {
+  all: unset;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0 5px;
+  color: white;
+  background-color: #29b6af;
+  border: 1px solid #29b6af;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    color: #29b6af;
+    background-color: #ffffff;
+    border: 1px solid #29b6af;
+  }
+  &:focus {
+    color: #29b6af;
+    background-color: #ffffff;
+    border: 1px solid #29b6af;
+  }
+}
+
 .width100 {
   width: 100%;
+}
+
+.width80 {
+  width: 80%;
+}
+
+.width60 {
+  width: 60%;
 }
 
 .height100 {
@@ -96,6 +138,11 @@ a {
   font-weight: bold;
 }
 
+.fontH3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .fontWhite {
   color: white;
 }
@@ -109,6 +156,10 @@ a {
   flex-direction: column;
 }
 
+.flexHCenter {
+  align-items: center;
+}
+
 .flexCenterCenter {
   justify-content: center;
   align-items: center;
@@ -116,6 +167,11 @@ a {
 
 .flexAuto {
   flex: auto;
+}
+
+.floatRight {
+  display: block;
+  float: right;
 }
 
 #layout {
@@ -130,3 +186,60 @@ a {
 .hidden {
   display: none !important;
 }
+
+.inBlock {
+  display: inline-block;
+}
+
+// 로그인 제외 main의 공통 요소
+.content_box {
+  margin: 0 auto;
+}
+
+.global_nav {
+  margin: 20px;
+}
+
+.global_month {
+  margin: 20px;
+}
+
+.global_menu {
+  padding: 5px 5px;
+  border-radius: 30px;
+  background-color: rgb(230, 230, 230);
+  width: 30%;
+  min-width: 200px;
+  overflow: hidden;
+}
+
+.global_subMenu {
+  padding: 10px 10px;
+  border-radius: 30px;
+  text-align: center;
+  color: #fff;
+  height: 100%;
+  &:hover {
+    color: black;
+    background-color: #fff;
+    cursor: pointer;
+  }
+}
+
+.global_MenuSelected {
+  color: black;
+  background-color: #fff;
+}
+
+// 내역
+.account_input {
+  margin: 20px;
+}
+
+.account_input li {
+  margin: 20px 0;
+}
+
+// .account_inputLine2 {
+//   width: 60%;
+// }

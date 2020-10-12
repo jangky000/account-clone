@@ -1,8 +1,10 @@
 import scss from "./login.scss";
 
-export default class LoginView {
+import { $ } from "@utils/tools.js";
+
+class LoginView {
   render() {
-    let html = `
+    let loginHTML = `
         <div class="login_box flexColumn flexCenterCenter">
             <div class="login_title flexRow flexCenterCenter width100">
                 <h2 class="loginTab flextAuto width100 fontH2 loginSelected"><a>로그인</a></h2>
@@ -17,7 +19,7 @@ export default class LoginView {
             </div>
         </div>
     `;
-    return html;
+    $("#main .container").insertAdjacentHTML("beforeend", loginHTML);
   }
 
   // functions
@@ -43,3 +45,6 @@ export default class LoginView {
     `;
   }
 }
+
+const loginView = new LoginView();
+export default loginView;

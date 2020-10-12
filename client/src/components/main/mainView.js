@@ -1,24 +1,37 @@
 // import scss from "./main.scss";
-import LoginView from "./login/loginView.js";
-import LoginEvent from "./login/loginEvent.js";
+import loginView from "./login/loginView.js";
+import loginEvent from "./login/loginEvent.js";
 
-export default class MainView {
-  constructor() {
-    this.loginView = new LoginView();
-    this.loginEvent = new LoginEvent(this.loginView);
-  }
+import accountLogView from "./accountLog/accountLogView.js";
+
+import { layout } from "@elements/elements.js";
+import { getToken } from "@utils/token.js";
+
+class MainView {
   render() {
-    const loginHtml = this.loginView.render();
-    let html = `
+    let mainHTML = `
         <div id="main" class="flexAuto">
             <div class="container">
-                ${loginHtml}
             </div>
         </div>
     `;
-    return html;
+    layout.insertAdjacentHTML("beforeend", mainHTML);
+
+    if (!getToken()) {
+      loginView.render();
+    } else {
+      accountLogView.render();
+    }
   }
+
   addEvent() {
-    this.loginEvent.addEvent();
+    if (!getToken()) {
+      loginEvent.addEvent();
+    } else {
+      accountLogView.addEvent();
+    }
   }
 }
+
+const mainView = new MainView();
+export default mainView;

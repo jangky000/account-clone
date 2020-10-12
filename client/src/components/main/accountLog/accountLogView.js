@@ -1,6 +1,6 @@
 import scss from "./accountLog.scss";
 
-export default class AccountLogView {
+class AccountLogView {
   render() {
     let html = `
         
@@ -8,3 +8,6 @@ export default class AccountLogView {
     return html;
   }
 }
+
+const accountLogView = new AccountLogView();
+export default accountLogView;

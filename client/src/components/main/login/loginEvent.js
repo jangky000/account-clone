@@ -2,15 +2,14 @@ import { $ } from "@utils/tools.js";
 import { fetchAPI } from "@utils/fetch.js";
 import { setToken } from "@utils/token.js";
 
-export default class LoginEvent {
-  constructor(loginView) {
-    this.loginView = loginView;
-  }
+import loginView from "./loginView.js";
+
+class LoginEvent {
   addEvent() {
     // 탭 이벤트
     $(".login_title").addEventListener(
       "click",
-      this.loginTabHandler.bind(this.loginView)
+      this.loginTabHandler.bind(loginView)
     );
 
     // 로그인, 회원가입 이벤트
@@ -47,6 +46,7 @@ export default class LoginEvent {
     console.log(result);
     if (result.success) {
       setToken(result.token);
+      window.location.reload();
     }
   }
 
@@ -93,3 +93,6 @@ export default class LoginEvent {
     }
   }
 }
+
+const loginEvent = new LoginEvent();
+export default loginEvent;
