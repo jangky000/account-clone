@@ -1,7 +1,7 @@
 const passport = require("passport");
 const { createJWT } = require("../utils/jwt");
 
-const COOKIE_EXPIRE = 5; // 분
+// const COOKIE_EXPIRE = 5; // 분
 
 // 로컬 로그인 인증
 exports.localAuthReq = (req, res, next) => {
@@ -23,10 +23,10 @@ exports.localAuthReq = (req, res, next) => {
         mname: member.dataValues.mname,
       });
 
-      res.cookie("token", token, {
-        maxAge: COOKIE_EXPIRE * 60,
-        httpOnly: true,
-      });
+      // res.cookie("token", token, {
+      //   maxAge: COOKIE_EXPIRE * 60,
+      //   httpOnly: true,
+      // });
 
       res.status(200).json({
         success: true,

@@ -131,3 +131,12 @@
 - client의 header, main, login 레이아웃, scss 추가
 - login & register 탭 변환 기능 추가
 - login & register fetch 기능 추가
+
+## Week6
+
+### day1
+
+- Client localStorage에 jwt 토큰 저장
+-
+
+### day2

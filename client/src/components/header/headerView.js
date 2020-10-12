@@ -1,6 +1,6 @@
 import scss from "./header.scss";
 
-export default class Header {
+export default class HeaderView {
   render() {
     let html = `
       <div id="header">

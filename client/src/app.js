@@ -1,11 +1,11 @@
 import "core-js/modules/es.array.flat";
 import css from "./style.scss";
 
-import Header from "@views/header/header.js";
-import Main from "@views/main/main.js";
+import HeaderView from "@components/header/headerView.js";
+import MainView from "@components/main/mainView.js";
 
-layout.insertAdjacentHTML("beforeend", new Header().render());
+layout.insertAdjacentHTML("beforeend", new HeaderView().render());
 
-const main = new Main();
+const main = new MainView();
 layout.insertAdjacentHTML("beforeend", main.render());
 main.addEvent();

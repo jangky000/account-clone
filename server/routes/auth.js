@@ -10,8 +10,8 @@ router.post("/login", localAuthReq);
 
 // 로그아웃
 router.get("/logout", jwtAuthReq, function (req, res, next) {
-  res.clearCookie("token");
-  // redis 삭제
+  // res.clearCookie("token");
+  // todo: redis 로그아웃된 토큰 추가
   res.status(200).json({ msg: "/api/auth/logout" });
 });
 
