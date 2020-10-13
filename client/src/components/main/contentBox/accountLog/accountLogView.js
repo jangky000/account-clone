@@ -4,6 +4,7 @@ import { $ } from "@utils/tools.js";
 
 class AccountLogView {
   render() {
+    $("#selected_content").innerHTML = "";
     this.accountInputRender();
     this.accountBoxRender();
   }
@@ -58,7 +59,7 @@ class AccountLogView {
       </ul>
     </div>
     `;
-    $("#main .content_box").insertAdjacentHTML("beforeend", html);
+    $("#selected_content").insertAdjacentHTML("beforeend", html);
   }
   accountBoxRender() {
     const html = `
@@ -117,7 +118,7 @@ class AccountLogView {
       </div>
     </div>
     `;
-    $("#main .content_box").insertAdjacentHTML("beforeend", html);
+    $("#selected_content").insertAdjacentHTML("beforeend", html);
   }
 }
 

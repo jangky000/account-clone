@@ -1,9 +1,17 @@
+// Views
+import accountLogView from "../accountLog/accountLogView.js";
+import calendarView from "../calendar/calendarView.js";
+import statusView from "../stats/statsView.js";
+
 import { $, $All } from "@utils/tools.js";
 
 class GlobalNavEvent {
   addEvent() {
     $(".global_month").addEventListener("click", this.changeMonthHandler);
-    $(".global_menu").addEventListener("click", this.changeMenuHandler);
+    $(".global_menu").addEventListener(
+      "click",
+      this.changeMenuHandler.bind(this)
+    );
   }
 
   changeMonthHandler(e) {
@@ -32,6 +40,17 @@ class GlobalNavEvent {
       });
       currMenu.classList.toggle("global_MenuSelected");
       // 해당 뷰 페이지 띄우기, 모델로부터 데이터 가져오기
+      this.viewRender(currMenu);
+    }
+  }
+  viewRender(currMenu) {
+    const classList = currMenu.classList;
+    if (classList.contains("accountLog")) {
+      accountLogView.render();
+    } else if (classList.contains("calendar")) {
+      calendarView.render();
+    } else if (classList.contains("stats")) {
+      statusView.render();
     }
   }
 }

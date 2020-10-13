@@ -12,13 +12,13 @@ class GlobalNavView {
                 <a class="monthRightArrow" href="#">▷</a>
             </div>
             <div class="global_menu width100 flexRow bordRad30">
-                <div class="global_subMenu flexAuto global_MenuSelected">내역</div>
-                <div class="global_subMenu flexAuto">달력</div>
-                <div class="global_subMenu flexAuto">통계</div>
+                <div class="accountLog global_subMenu flexAuto global_MenuSelected">내역</div>
+                <div class="calendar global_subMenu flexAuto">달력</div>
+                <div class="stats global_subMenu flexAuto">통계</div>
             </div>
         </div>
       `;
-    $("#main .content_box").insertAdjacentHTML("beforeend", html);
+    $("#gb_nav").insertAdjacentHTML("beforeend", html);
   }
 }
 

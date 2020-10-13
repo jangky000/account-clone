@@ -10,6 +10,8 @@ class ContentBoxView {
   render() {
     let contentBoxHTML = `
     <div class="content_box width60">
+      <div id="gb_nav"></div>
+      <div id="selected_content"></div>
     </div>
     `;
     $("#main .container").insertAdjacentHTML("beforeend", contentBoxHTML);
