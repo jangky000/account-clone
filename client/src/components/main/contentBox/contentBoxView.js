@@ -4,6 +4,10 @@ import globalNavEvent from "./globalNav/globalNavEvent.js";
 
 import accountLogView from "./accountLog/accountLogView.js";
 
+// models
+import globalNavModel from "./globalNav/globalNavModel.js";
+import accountLogModel from "./accountLog/accountLogModel.js";
+
 import { $ } from "@utils/tools.js";
 
 class ContentBoxView {
@@ -15,8 +19,14 @@ class ContentBoxView {
     </div>
     `;
     $("#main .container").insertAdjacentHTML("beforeend", contentBoxHTML);
+
+    // 글로벌 내비 초기화
     globalNavView.render();
+    globalNavModel.currMonth();
+
+    // 내역 초기화
     accountLogView.render();
+    accountLogModel.getAccountLog(globalNavModel.year, globalNavModel.month);
   }
   addEvent() {
     globalNavEvent.addEvent();

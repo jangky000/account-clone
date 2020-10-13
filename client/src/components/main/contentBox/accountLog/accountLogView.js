@@ -1,6 +1,6 @@
 import scss from "./accountLog.scss";
-
 import { $ } from "@utils/tools.js";
+import accountLogModel from "./accountLogModel.js";
 
 class AccountLogView {
   render() {
@@ -22,7 +22,7 @@ class AccountLogView {
         <li class="flexRow width100">
           <div class="flexAuto flexRow">
             <span>날짜</span>
-            <input class="underlineInput flexAuto" type="text" name="rdate" placeholder="0000-00-00"/>
+            <input class="underlineInput flexAuto" type="date" name="rdate" placeholder="0000-00-00"/>
           </div>
           <div class="flexAuto flexRow">
             <span>카테고리</span>
@@ -66,61 +66,86 @@ class AccountLogView {
     <div class="account_box">
       <div class="ie_filter">
         <label class="income" for="account_income">
-          <input type="checkbox" name="income" id="account_income" value="I"/>
+          <input type="checkbox" name="income" id="account_income" value="I" checked/>
           수입
         </label>
         <label class="expense" for="account_expense">
-          <input type="checkbox" name="expense" id="account_expense" value="E"/>
+          <input type="checkbox" name="expense" id="account_expense" value="E" checked/>
           지출
         </label>
       </div>
       <div class="account_list width100">
         <ul class="width100">
-          <li class="account_lhead flexRow">
-            <div class="lhead_date flexAuto">
-              <span class="rdate">10월 17일</span>
-              <span class="dayname">토</span>
-            </div>
-            <div class="lhead_money flexAuto textRight">
-              <span class="income">+0원</span>
-              <span class="expense">-2,000원</span>
-            </div>
-          </li>
-          <li class="account_lbody flexRow flexHCenter">
-            <div class="flexAuto">
-              <span class="category cate_expense">쇼핑</span>
-            </div>
-            <div class="flex4">
-              <span class="memo">미용실</span>
-            </div>
-            <div class="flexAuto textRight">
-              <span class="pay_method">현대카드</span>
-            </div>
-            <div class="flexAuto textRight">
-              <span class="money expense">-2,000원</span>
-            </div>
-          </li>
-          <li class="account_lbody flexRow flexHCenter">
-            <div class="flexAuto">
-              <span class="category cate_income">월급</span>
-            </div>
-            <div class="flex4">
-              <span class="memo">9월 급여</span>
-            </div>
-            <div class="flexAuto textRight">
-              <span class="pay_method">카카오체크카드</span>
-            </div>
-            <div class="flexAuto textRight">
-              <span class="money income">+2,000,000원</span>
-            </div>
-          </li>
         </ul>
       </div>
     </div>
     `;
     $("#selected_content").insertAdjacentHTML("beforeend", html);
   }
+
+  update(data) {
+    if (data.logs) {
+      // filer에 따라서 hidden표시
+      this.renderAccountList(data.logs);
+    } else if (false) {
+      // input form 업데이트 시
+    }
+  }
+
+  renderAccountList(logs) {
+    let html = "";
+    Object.keys(logs).forEach((key) => {
+      html += this.lheadHTML(logs[key]);
+      logs[key].contents.forEach((content) => {
+        html += this.lbodyHTML(content);
+      });
+    });
+    $(".account_list ul").innerHTML = html;
+  }
+
+  lheadHTML(head) {
+    const html = `
+      <li class="account_lhead flexRow">
+        <div class="lhead_date flexAuto">
+          <span class="rdate" data-rdate="${head.date}">${head.date}</span>
+          <span class="dayname">${head.dayname}</span>
+        </div>
+        <div class="lhead_money flexAuto textRight">
+          <span class="income">+${head.tot_income}원</span>
+          <span class="expense">-${head.tot_expense}원</span>
+        </div>
+      </li>
+    `;
+    return html;
+  }
+
+  lbodyHTML(content) {
+    const html = `
+    <li class="account_lbody flexRow flexHCenter">
+      <div>
+        <span class="category ${
+          content.iemode == "I" ? "cate_income" : "cate_expense"
+        }" data-cateno="${content.cateno}">${content.catename}</span>
+      </div>
+      <div class="flex4">
+        <span class="memo">${content.memo}</span>
+      </div>
+      <div class="flexAuto textRight">
+        <span class="pay_method" data-payno="${content.payno}">${
+      content.payname
+    }</span>
+      </div>
+      <div class="flexAuto textRight">
+        <span class="money ${
+          content.iemode == "I" ? "income" : "expense"
+        }" data-money="${content.money}">${content.money}원</span>
+      </div>
+    </li>
+    `;
+    return html;
+  }
 }
 
 const accountLogView = new AccountLogView();
+accountLogModel.subscribe(accountLogView);
 export default accountLogView;

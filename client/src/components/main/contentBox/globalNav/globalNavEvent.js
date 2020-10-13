@@ -3,6 +3,10 @@ import accountLogView from "../accountLog/accountLogView.js";
 import calendarView from "../calendar/calendarView.js";
 import statusView from "../stats/statsView.js";
 
+// models
+import globalNavModel from "./globalNavModel.js";
+import getAccountLog from "../accountLog/accountLogModel.js";
+
 import { $, $All } from "@utils/tools.js";
 
 class GlobalNavEvent {
@@ -16,15 +20,14 @@ class GlobalNavEvent {
 
   changeMonthHandler(e) {
     const gbMonth = e.currentTarget;
-    const monthTextEl = $("h2", gbMonth);
     const arrowEl = e.target.closest("a");
-    const month = 10; // model에서 가져오기
     if (arrowEl.classList.contains("monthLeftArrow")) {
-      console.log("month - 1");
-      monthTextEl.innerText = `${month - 1}월`; // view 업데이트
+      globalNavModel.prevMonth();
+      // 내역이 선택된 상태일 때
+      getAccountLog.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
     } else if (arrowEl.classList.contains("monthRightArrow")) {
-      console.log("month + 1");
-      monthTextEl.innerText = `${month + 1}월`; // view 업데이트
+      globalNavModel.nextMonth();
+      getAccountLog.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
     }
   }
 
@@ -36,6 +39,8 @@ class GlobalNavEvent {
       subMenuList.forEach((subMenu) => {
         if (subMenu.classList.contains("global_MenuSelected")) {
           subMenu.classList.toggle("global_MenuSelected");
+          // 해당 이벤트 삭제
+          // html 삭제
         }
       });
       currMenu.classList.toggle("global_MenuSelected");
@@ -46,7 +51,8 @@ class GlobalNavEvent {
   viewRender(currMenu) {
     const classList = currMenu.classList;
     if (classList.contains("accountLog")) {
-      accountLogView.render();
+      accountLogView.render(); // 기초 html 생성
+      getAccountLog.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
     } else if (classList.contains("calendar")) {
       calendarView.render();
     } else if (classList.contains("stats")) {
