@@ -146,6 +146,9 @@ a {
 .fontWhite {
   color: white;
 }
+.fontMainTone {
+  color: #29b6af;
+}
 
 .flexRow {
   display: flex;
@@ -167,6 +170,10 @@ a {
 
 .flexAuto {
   flex: auto;
+}
+
+.flex4 {
+  flex: 4 1 auto;
 }
 
 .floatRight {
@@ -208,7 +215,6 @@ a {
   padding: 5px 5px;
   border-radius: 30px;
   background-color: rgb(230, 230, 230);
-  width: 30%;
   min-width: 200px;
   overflow: hidden;
 }
@@ -233,13 +239,69 @@ a {
 
 // 내역
 .account_input {
-  margin: 20px;
+  margin: 20px 0;
 }
 
 .account_input li {
   margin: 20px 0;
 }
 
-// .account_inputLine2 {
-//   width: 60%;
-// }
+// 리스트
+.account_box {
+  margin: 30px auto;
+}
+
+.ie_filter {
+  text-align: right;
+  margin: 10px 0;
+}
+
+.account_lhead {
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  padding: 10px 0;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.account_lbody {
+  border-top: 1px solid #969696;
+  border-bottom: 1px solid #969696;
+  padding: 10px 0;
+}
+
+.dayname {
+  color: #a0a0a0;
+}
+
+.pay_method {
+  color: #a0a0a0;
+}
+
+.income {
+  color: #3a97d4;
+  font-weight: bold;
+}
+
+.expense {
+  color: #37ddd5;
+  font-weight: bold;
+}
+.category {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.cate_income {
+  background-color: #3a97d4;
+}
+
+.cate_expense {
+  background-color: #37ddd5;
+}

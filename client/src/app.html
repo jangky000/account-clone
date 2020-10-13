@@ -14,11 +14,11 @@
         <!-- 글로벌 내비게이션 -->
         <div class="global_nav flexColumn flexCenterCenter">
           <div class="global_month">
-            <a href="#"><</a>
+            <a href="#">◁</a>
             <h2 class="fontH2 inBlock">10월</h2>
-            <a href="#">></a>
+            <a href="#">▷</a>
           </div>
-          <div class="global_menu flexRow bordRad30">
+          <div class="global_menu width100 flexRow bordRad30">
             <div class="global_subMenu flexAuto global_MenuSelected">내역</div>
             <div class="global_subMenu flexAuto">달력</div>
             <div class="global_subMenu flexAuto">통계</div>
@@ -32,7 +32,7 @@
               <span>분류</span>
               <button class="btnBasicSmall">수입</button>
               <button class="btnBasicSmall">지출</button>
-              <a class="floatRight" href="#">내용 지우기</a>
+              <a class="floatRight fontMainTone" href="#">내용 지우기</a>
             </li>
             <li class="flexRow width100">
               <div class="flexAuto flexRow">
@@ -88,7 +88,7 @@
         </div>
         <div class="account_box">
           <div class="ie_filter">
-            <label for="account_income">
+            <label class="income" for="account_income">
               <input
                 type="checkbox"
                 name="income"
@@ -97,7 +97,7 @@
               />
               수입
             </label>
-            <label for="account_expense">
+            <label class="expense" for="account_expense">
               <input
                 type="checkbox"
                 name="expense"
@@ -107,13 +107,48 @@
               지출
             </label>
           </div>
-          <div class="account_list">
-            <ul>
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
+          <div class="account_list width100">
+            <ul class="width100">
+              <li class="account_lhead flexRow">
+                <div class="lhead_date flexAuto">
+                  <span class="rdate">10월 17일</span>
+                  <span class="dayname">토</span>
+                </div>
+                <div class="lhead_money flexAuto textRight">
+                  <span class="income">+0원</span>
+                  <span class="expense">-2,000원</span>
+                </div>
+              </li>
+              <li class="account_lbody flexRow flexHCenter">
+                <div class="flexAuto">
+                  <span class="category cate_expense">쇼핑</span>
+                </div>
+                <div class="flex4">
+                  <span class="memo">미용실</span>
+                </div>
+                <div class="flexAuto textRight">
+                  <span class="pay_method">현대카드</span>
+                </div>
+                <div class="flexAuto textRight">
+                  <span class="money expense">-2,000원</span>
+                </div>
+              </li>
+              <li class="account_lbody flexRow flexHCenter">
+                <div class="flexAuto">
+                  <span class="category cate_income">월급</span>
+                </div>
+                <div class="flex4">
+                  <span class="memo">9월 급여</span>
+                </div>
+                <div class="flexAuto textRight">
+                  <span class="pay_method">카카오체크카드</span>
+                </div>
+                <div class="flexAuto textRight">
+                  <span class="money income">+2,000,000원</span>
+                </div>
+              </li>
             </ul>
+            
           </div>
         </div>
       </div>

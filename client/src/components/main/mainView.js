@@ -2,7 +2,7 @@
 import loginView from "./login/loginView.js";
 import loginEvent from "./login/loginEvent.js";
 
-import accountLogView from "./accountLog/accountLogView.js";
+import accountLogView from "./contentBox/accountLog/accountLogView.js";
 
 import { layout } from "@elements/elements.js";
 import { getToken } from "@utils/token.js";
