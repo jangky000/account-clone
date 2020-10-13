@@ -2,14 +2,14 @@ import scss from "./globalNav.scss";
 
 import { $ } from "@utils/tools.js";
 
-class ContentBoxView {
+class GlobalNavView {
   render() {
-    let contentBoxHTML = `
+    let html = `
         <div class="global_nav flexColumn flexCenterCenter">
             <div class="global_month">
-                <a href="#">◁</a>
+                <a class="monthLeftArrow" href="#">◁</a>
                 <h2 class="fontH2 inBlock">10월</h2>
-                <a href="#">▷</a>
+                <a class="monthRightArrow" href="#">▷</a>
             </div>
             <div class="global_menu width100 flexRow bordRad30">
                 <div class="global_subMenu flexAuto global_MenuSelected">내역</div>
@@ -18,11 +18,9 @@ class ContentBoxView {
             </div>
         </div>
       `;
-    $("#main .content_box").insertAdjacentHTML("beforeend", contentBoxHTML);
+    $("#main .content_box").insertAdjacentHTML("beforeend", html);
   }
-
-  addEvent() {}
 }
 
-const contentBoxView = new ContentBoxView();
-export default contentBoxView;
+const globalNavView = new GlobalNavView();
+export default globalNavView;

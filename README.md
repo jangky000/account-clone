@@ -143,4 +143,5 @@
 
 - Client 내역 레이아웃 완성
 - Client 내역 레이아웃 리팩토링
+- Client global Nav 이벤트 추가
 - Client 내역 레이아웃 fetch 연결

@@ -1,5 +1,7 @@
 import scss from "./contentBox.scss";
 import globalNavView from "./globalNav/globalNavView.js";
+import globalNavEvent from "./globalNav/globalNavEvent.js";
+
 import accountLogView from "./accountLog/accountLogView.js";
 
 import { $ } from "@utils/tools.js";
@@ -14,7 +16,9 @@ class ContentBoxView {
     globalNavView.render();
     accountLogView.render();
   }
-  addEvent() {}
+  addEvent() {
+    globalNavEvent.addEvent();
+  }
 }
 
 const contentBoxView = new ContentBoxView();
