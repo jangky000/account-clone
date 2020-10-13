@@ -1,0 +1,33 @@
+.global_nav {
+  margin: 20px;
+}
+
+.global_month {
+  margin: 20px;
+}
+
+.global_menu {
+  padding: 5px 5px;
+  border-radius: 30px;
+  background-color: rgb(230, 230, 230);
+  min-width: 200px;
+  overflow: hidden;
+}
+
+.global_subMenu {
+  padding: 10px 10px;
+  border-radius: 30px;
+  text-align: center;
+  color: #fff;
+  height: 100%;
+  &:hover {
+    color: black;
+    background-color: #fff;
+    cursor: pointer;
+  }
+}
+
+.global_MenuSelected {
+  color: black;
+  background-color: #fff;
+}
