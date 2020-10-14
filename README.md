@@ -151,3 +151,4 @@
 
 - Client fetchAPI 리팩토링
 - Client token expired 처리
+- Server select 라우트 추가, Client 내역 select 항목 render 추가

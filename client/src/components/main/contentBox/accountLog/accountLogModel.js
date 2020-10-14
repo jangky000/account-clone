@@ -7,9 +7,13 @@ class AccountLogModel extends Observable {
     super();
   }
 
+  async getAccountSelectName() {
+    const result = await fetchAPI("GET", `/api/account/select`);
+    this.notify(result);
+  }
+
   async getAccountLog(year, month) {
     const result = await fetchAPI("GET", `/api/account/${year}/${month}`);
-    console.log(result);
     if (result.message === "jwt expired") {
       removeToken();
     }
@@ -18,4 +22,5 @@ class AccountLogModel extends Observable {
 }
 
 const accountLogModel = new AccountLogModel();
+accountLogModel.getAccountSelectName();
 export default accountLogModel;

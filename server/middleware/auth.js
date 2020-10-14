@@ -12,8 +12,6 @@ exports.jwtAuthReq = (req, res, next) => {
         res.locals.member = member;
         next();
       } else {
-        // console.log(jwtErr);
-        // console.log(message);
         res
           .status(201)
           .json({ success: false, error: jwtErr, message: message.message });

@@ -5,13 +5,42 @@ const { jwtAuthReq } = require("../middleware/auth");
 const { getAccountLogsCont } = require("../controller/accountLogsCont");
 
 const accountLogModel = require("../models").account_log;
+const categoryModel = require("../models").category;
+const payMethodModel = require("../models").pay_method;
 
+const Op = require("../models").Sequelize.Op;
+
+router.get("/select", jwtAuthReq, async (req, res, next) => {
+  let cateList = await categoryModel.findAll();
+  cateList = cateList.reduce((arr, cate) => {
+    arr.push(cate.dataValues);
+    return arr;
+  }, []);
+
+  let payList = await payMethodModel.findAll({
+    where: {
+      [Op.or]: [
+        { memno: res.locals.member.memno },
+        { memno: { [Op.eq]: null } },
+      ],
+    },
+  });
+  payList = payList.reduce((arr, pay) => {
+    arr.push(pay.dataValues);
+    return arr;
+  }, []);
+
+  return res.status(200).json({
+    success: true,
+    select: { cateList: cateList, payList: payList },
+  });
+});
 // 가계부 로그 내역을 정리해서 리턴
 router.get("/:year/:month", jwtAuthReq, getAccountLogsCont);
 
 // 가계부 로그 추가
 router.post("/", jwtAuthReq, async (req, res, next) => {
-  const memno = "1";
+  const memno = res.locals.member.memno;
   const { iemode, cateno, payno, money, memo, rdate } = req.body;
   const accountData = {
     iemode: iemode,
@@ -29,7 +58,7 @@ router.post("/", jwtAuthReq, async (req, res, next) => {
 // 가계부 로그 수정
 router.put("/:logno", jwtAuthReq, async (req, res, next) => {
   const logno = req.params.logno;
-  const memno = "1";
+  const memno = res.locals.member.memno;
   const { iemode, cateno, payno, money, memo, rdate } = req.body;
   const accountData = {
     iemode: iemode,

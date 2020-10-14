@@ -41,16 +41,16 @@ exports.getAccountLogsCont = async (req, res, next) => {
   const year = req.params.year;
   const month = req.params.month;
   const { firstDay, lastDay } = firstLastDay(year, month);
-  const list = await getAccountLogByDate(firstDay, lastDay);
+  const list = await getAccountLogByDate(res.locals.member, firstDay, lastDay);
   const logs = accountLogFormatting(list);
   res.status(200).json({ success: true, logs: logs });
 };
 
 // 최신순으로 내역 데이터 읽어오기
-const getAccountLogByDate = async (firstDay, lastDay) => {
+const getAccountLogByDate = async (member, firstDay, lastDay) => {
   return accountLogModel.findAll({
     where: {
-      memno: 1,
+      memno: member.memno,
       rdate: { [Op.between]: [dashDate(firstDay), dashDate(lastDay)] },
     },
     order: [["rdate", "DESC"]],

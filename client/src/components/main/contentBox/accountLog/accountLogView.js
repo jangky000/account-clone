@@ -27,19 +27,11 @@ class AccountLogView {
           <div class="flexAuto flexRow">
             <span>카테고리</span>
             <select class="underlineInput flexAuto" name="category" id="account_category">
-              <option value="1">월급</option>
-              <option value="2">용돈</option>
-              <option value="3">기타</option>
-              <option value="4">식비</option>
             </select>
           </div>
           <div class="flexAuto flexRow">
             <span>결제수단</span>
             <select class="underlineInput flexAuto" name="pay_method" id="account_payMethod">
-              <option value="1">현금</option>
-              <option value="2">현재카드</option>
-              <option value="3">카카오체크카드</option>
-              <option value="4">국민은행</option>
             </select>
           </div>
         </li>
@@ -88,13 +80,28 @@ class AccountLogView {
       location.reload();
       return;
     }
-
-    if (data.logs) {
+    if (data.select) {
+      this.renderSelectList(data.select);
+    } else if (data.logs) {
       // filer에 따라서 hidden표시
       this.renderAccountList(data.logs);
     } else if (false) {
       // input form 업데이트 시
     }
+  }
+
+  renderSelectList(select) {
+    let cateHTML = "";
+    select.cateList.forEach((cate) => {
+      cateHTML += `<option value="${cate.cateno}">${cate.catename}</option>`;
+    });
+    $("#account_category").innerHTML = cateHTML;
+
+    let payHTML = "";
+    select.payList.forEach((pay) => {
+      payHTML += `<option value="${pay.payno}">${pay.payname}</option>`;
+    });
+    $("#account_payMethod").innerHTML = payHTML;
   }
 
   renderAccountList(logs) {
