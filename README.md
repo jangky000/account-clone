@@ -146,3 +146,7 @@
 - Client global Nav 이벤트 추가
 - Client calendar, stats 폴더 추가
 - Client 내역 레이아웃 fetch 조회 추가
+
+### day3
+
+- Client fetchAPI 리팩토링

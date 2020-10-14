@@ -5,7 +5,7 @@ import statusView from "../stats/statsView.js";
 
 // models
 import globalNavModel from "./globalNavModel.js";
-import getAccountLog from "../accountLog/accountLogModel.js";
+import accountLogModel from "../accountLog/accountLogModel.js";
 
 import { $, $All } from "@utils/tools.js";
 
@@ -24,10 +24,10 @@ class GlobalNavEvent {
     if (arrowEl.classList.contains("monthLeftArrow")) {
       globalNavModel.prevMonth();
       // 내역이 선택된 상태일 때
-      getAccountLog.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
+      accountLogModel.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
     } else if (arrowEl.classList.contains("monthRightArrow")) {
       globalNavModel.nextMonth();
-      getAccountLog.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
+      accountLogModel.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
     }
   }
 
@@ -52,7 +52,7 @@ class GlobalNavEvent {
     const classList = currMenu.classList;
     if (classList.contains("accountLog")) {
       accountLogView.render(); // 기초 html 생성
-      getAccountLog.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
+      accountLogModel.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
     } else if (classList.contains("calendar")) {
       calendarView.render();
     } else if (classList.contains("stats")) {

@@ -7,7 +7,7 @@ const { getAccountLogsCont } = require("../controller/accountLogsCont");
 const accountLogModel = require("../models").account_log;
 
 // 가계부 로그 내역을 정리해서 리턴
-router.get("/:year/:month", getAccountLogsCont);
+router.get("/:year/:month", jwtAuthReq, getAccountLogsCont);
 
 // 가계부 로그 추가
 router.post("/", jwtAuthReq, async (req, res, next) => {
