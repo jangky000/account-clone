@@ -23,11 +23,6 @@ exports.localAuthReq = (req, res, next) => {
         mname: member.dataValues.mname,
       });
 
-      // res.cookie("token", token, {
-      //   maxAge: COOKIE_EXPIRE * 60,
-      //   httpOnly: true,
-      // });
-
       res.status(200).json({
         success: true,
         token: token,

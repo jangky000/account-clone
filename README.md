@@ -150,3 +150,4 @@
 ### day3
 
 - Client fetchAPI 리팩토링
+- Client token expired 처리

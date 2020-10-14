@@ -84,6 +84,11 @@ class AccountLogView {
   }
 
   update(data) {
+    if (data.message === "jwt expired") {
+      location.reload();
+      return;
+    }
+
     if (data.logs) {
       // filer에 따라서 hidden표시
       this.renderAccountList(data.logs);

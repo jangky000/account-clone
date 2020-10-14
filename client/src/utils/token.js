@@ -3,3 +3,5 @@ export const setToken = (token) => {
 };
 
 export const getToken = () => localStorage.getItem("jwt");
+
+export const removeToken = () => localStorage.removeItem("jwt");

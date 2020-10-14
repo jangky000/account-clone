@@ -1,6 +1,6 @@
 import Observable from "@utils/observable.js";
 import { fetchAPI } from "@utils/fetch.js";
-import { getToken } from "@utils/token.js";
+import { removeToken } from "@utils/token.js";
 
 class AccountLogModel extends Observable {
   constructor() {
@@ -8,8 +8,11 @@ class AccountLogModel extends Observable {
   }
 
   async getAccountLog(year, month) {
-    // 관련 정보 요청
     const result = await fetchAPI("GET", `/api/account/${year}/${month}`);
+    console.log(result);
+    if (result.message === "jwt expired") {
+      removeToken();
+    }
     this.notify(result);
   }
 }
