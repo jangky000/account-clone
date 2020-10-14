@@ -1,6 +1,7 @@
 import Observable from "@utils/observable.js";
 import { fetchAPI } from "@utils/fetch.js";
 import { removeToken } from "@utils/token.js";
+import globalNavModel from "../globalNav/globalNavModel.js";
 
 class StatsModel extends Observable {
   constructor() {
@@ -8,10 +9,16 @@ class StatsModel extends Observable {
   }
 
   async getCateExpense() {
-    const result = await fetchAPI("GET", `/api/status/category/expense`);
+    const year = globalNavModel.year;
+    const month = globalNavModel.month;
+    const result = await fetchAPI(
+      "GET",
+      `/api/status/category/expense/${year}/${month}`
+    );
     if (result.message === "jwt expired") {
       removeToken();
     }
+    console.log(result);
     this.notify(result);
   }
 }

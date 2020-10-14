@@ -154,4 +154,5 @@
 - Server select 라우트 추가, Client 내역 select 항목 render 추가
 - Client 파이 차트 레이아웃
 - Client 카테고리별 지출 모델
-- Client 바 차트 레이아웃
+- Client 달력 레이아웃
+- Client 예외 처리

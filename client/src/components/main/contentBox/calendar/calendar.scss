@@ -1,0 +1,29 @@
+.sunday {
+  color: #ff6666;
+}
+
+.calendar_box .calendarContainer {
+  width: 100%;
+  margin: 20px;
+}
+
+.calendar_box .calendarContainer table {
+  margin: 20px auto;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+  border-spacing: 0px;
+}
+
+.calendar_box .calendarContainer table th {
+  padding: 20px 0;
+  font-weight: bold;
+  border: 1px solid rgb(58, 58, 58);
+}
+
+.calendar_box .calendarContainer table td {
+  width: 10vw;
+  height: 10vw;
+  border: 1px solid rgb(58, 58, 58);
+  border-radius: 50%;
+}

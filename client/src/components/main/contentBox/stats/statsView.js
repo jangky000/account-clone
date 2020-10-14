@@ -19,34 +19,83 @@ class StatusView {
       "#ff65c4",
     ];
   }
-  async render() {
-    const per = [20, 30, 50];
+  render() {
     const pieHTML = `
-      <svg class="pieChart" width="400" height="400">
-        <circle class="piePart pie1"
-          data-per="30" fill="transparent" 
-          cx="${2 * this.r}" cy="${2 * this.r}" r="${this.r}" 
-          stroke-width="${2 * this.r}"
-        />
+      <svg id="pieChart" width="400" height="400">
       </svg>
     `;
     $("#selected_content").innerHTML = pieHTML;
-    await this.waitMS(1000);
-    this.css();
   }
 
-  css() {
-    const pie1 = $(".pie1");
-    const pie1Len = (this.roundLen * 30) / 100;
+  update(data) {
+    if (data.message === "jwt expired") {
+      location.reload();
+      return;
+    }
+    if (data.cateStatus) {
+      this.renderPieChart(data.cateStatus);
+    }
+  }
 
-    pie1.style.setProperty(
+  async renderPieChart(cateStatus) {
+    const tot_sum = Object.keys(cateStatus).reduce((acc, key) => {
+      acc += cateStatus[key].total_money;
+      return acc;
+    }, 0);
+    const percentList = Object.keys(cateStatus).reduce((arr, key) => {
+      const money = cateStatus[key].total_money;
+      const percent = Math.round((money / tot_sum) * 100);
+      arr.push({
+        money: money,
+        percent: percent,
+        catename: cateStatus[key].catename,
+        cateno: cateStatus[key].cateno,
+      });
+      return arr;
+    }, []);
+
+    percentList.sort((a, b) => {
+      return b.percent - a.percent;
+    });
+    // console.log(percentList);
+    let html = "";
+    for (let i = 0; i < percentList.length; i++) {
+      html += this.piePart(i + 1, percentList[i].percent);
+    }
+    const pieChart = $("#pieChart");
+    if (!pieChart) return;
+    pieChart.innerHTML = html;
+    await this.waitMS(1000);
+    let offset = 0;
+    for (let i = 0; i < percentList.length; i++) {
+      offset = this.css(i + 1, percentList[i].percent, offset);
+      if (!offset) break;
+    }
+  }
+
+  piePart(num, percent) {
+    const html = `
+      <circle class="piePart pie${num}"
+        data-percent="${percent}" fill="transparent" 
+        cx="${2 * this.r}" cy="${2 * this.r}" r="${this.r}" 
+        stroke-width="${2 * this.r}"
+      />
+    `;
+    return html;
+  }
+
+  css(num, percent, offset) {
+    const pie = $(`.pie${num}`);
+    if (!pie) return null;
+    const pieLen = (this.roundLen * percent) / 100;
+
+    pie.style.setProperty(
       "stroke-dasharray",
-      `${pie1Len} ${this.roundLen - pie1Len}`
+      `${pieLen} ${this.roundLen - pieLen}`
     );
-    pie1.style.setProperty(
-      "stroke",
-      this.colors[Math.round(Math.random() * this.colors.length)]
-    );
+    pie.style.setProperty("stroke", this.colors[num - 1]);
+    pie.style.setProperty("stroke-dashoffset", -offset);
+    return pieLen;
   }
 
   waitMS(ms) {

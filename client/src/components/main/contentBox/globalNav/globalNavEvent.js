@@ -6,6 +6,7 @@ import statusView from "../stats/statsView.js";
 // models
 import globalNavModel from "./globalNavModel.js";
 import accountLogModel from "../accountLog/accountLogModel.js";
+import statsModel from "../stats/statsModel.js";
 
 import { $, $All } from "@utils/tools.js";
 
@@ -19,7 +20,7 @@ class GlobalNavEvent {
   }
 
   changeMonthHandler(e) {
-    const gbMonth = e.currentTarget;
+    // const gbMonth = e.currentTarget;
     const arrowEl = e.target.closest("a");
     if (arrowEl.classList.contains("monthLeftArrow")) {
       globalNavModel.prevMonth();
@@ -35,6 +36,7 @@ class GlobalNavEvent {
     const gbMenu = e.currentTarget;
     const subMenuList = $All(".global_subMenu", gbMenu);
     const currMenu = e.target;
+    if (!currMenu.classList.contains("global_subMenu")) return;
     if (!currMenu.classList.contains("global_MenuSelected")) {
       subMenuList.forEach((subMenu) => {
         if (subMenu.classList.contains("global_MenuSelected")) {
@@ -52,11 +54,13 @@ class GlobalNavEvent {
     const classList = currMenu.classList;
     if (classList.contains("accountLog")) {
       accountLogView.render(); // 기초 html 생성
+      accountLogModel.getAccountSelectName();
       accountLogModel.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
     } else if (classList.contains("calendar")) {
       calendarView.render();
     } else if (classList.contains("stats")) {
       statusView.render();
+      statsModel.getCateExpense();
     }
   }
 }
