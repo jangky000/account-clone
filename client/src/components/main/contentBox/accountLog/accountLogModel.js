@@ -22,5 +22,4 @@ class AccountLogModel extends Observable {
 }
 
 const accountLogModel = new AccountLogModel();
-accountLogModel.getAccountSelectName();
 export default accountLogModel;

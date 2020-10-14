@@ -1,0 +1,8 @@
+:root {
+  --roundLen: 700;
+}
+
+.piePart {
+  stroke-dasharray: 0 var(--roundLen);
+  transition: stroke-dasharray 1s ease-in-out;
+}

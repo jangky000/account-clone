@@ -26,6 +26,7 @@ class ContentBoxView {
 
     // 내역 초기화
     accountLogView.render();
+    accountLogModel.getAccountSelectName();
     accountLogModel.getAccountLog(globalNavModel.year, globalNavModel.month);
   }
   addEvent() {
