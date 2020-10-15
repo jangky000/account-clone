@@ -49,6 +49,8 @@ class BarView {
   renderBarChart(cateStatus) {
     if (!this.table) return;
 
+    this.table.innerHTML = "";
+
     let html = "";
     for (let i = 0; i < cateStatus.length; i++) {
       html += this.barRow(i + 1, cateStatus[i]);

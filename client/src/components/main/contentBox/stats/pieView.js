@@ -42,12 +42,15 @@ class PieView {
   }
 
   async renderPieChart(cateStatus) {
-    const pieChart = $("#pieChart");
-    if (!pieChart) return;
+    if (!this.pieBox) return;
 
     if (!Object.keys(cateStatus).length) {
       this.pieBox.innerHTML = "소비 내역이 없습니다.";
+      return;
     }
+
+    const svgHTML = '<svg id="pieChart" width="600px" height="600px"></svg>';
+    this.pieBox.innerHTML = svgHTML;
 
     let html = "";
     for (let i = 0; i < cateStatus.length; i++) {

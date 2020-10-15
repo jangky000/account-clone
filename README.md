@@ -168,3 +168,10 @@ http://101.101.210.76:8000/
 - Client Calendar 조회 기능 완성
 - Client Bar 차트 조회 기능 완성
 - Client 로그아웃 추가
+- Client globalNavEvent 버그 수정
+
+### 진행할 사항
+
+- 사용내역 등록, 수정, 삭제
+- Client Model 캐시 적용
+- SPA 라우팅,히스토리

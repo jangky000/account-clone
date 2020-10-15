@@ -15,7 +15,10 @@ import { $, $All } from "@utils/tools.js";
 
 class GlobalNavEvent {
   addEvent() {
-    $(".global_month").addEventListener("click", this.changeMonthHandler);
+    $(".global_month").addEventListener(
+      "click",
+      this.changeMonthHandler.bind(this)
+    );
     $(".global_menu").addEventListener(
       "click",
       this.changeMenuHandler.bind(this)
@@ -23,15 +26,25 @@ class GlobalNavEvent {
   }
 
   changeMonthHandler(e) {
-    // const gbMonth = e.currentTarget;
     const arrowEl = e.target.closest("a");
+    if (!arrowEl) return;
     if (arrowEl.classList.contains("monthLeftArrow")) {
       globalNavModel.prevMonth();
-      // 내역이 선택된 상태일 때
-      accountLogModel.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
+      this.updateMonthData();
     } else if (arrowEl.classList.contains("monthRightArrow")) {
       globalNavModel.nextMonth();
-      accountLogModel.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
+      this.updateMonthData();
+    }
+  }
+
+  updateMonthData() {
+    const classList = $(".global_MenuSelected").classList;
+    if (classList.contains("accountLog")) {
+      accountLogModel.getAccountLog(globalNavModel.year, globalNavModel.month);
+    } else if (classList.contains("calendar")) {
+      calendarModel.getCalendarIE();
+    } else if (classList.contains("stats")) {
+      statsModel.getCateExpense();
     }
   }
 
