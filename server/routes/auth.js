@@ -10,9 +10,11 @@ router.post("/login", localAuthReq);
 
 // 로그아웃
 router.get("/logout", jwtAuthReq, function (req, res, next) {
-  // res.clearCookie("token");
+  console.log(`${res.locals.member.uid} 로그아웃`);
   // todo: redis 로그아웃된 토큰 추가
-  res.status(200).json({ msg: "/api/auth/logout" });
+  res
+    .status(200)
+    .json({ success: true, message: `${res.locals.member.uid} 로그아웃` });
 });
 
 module.exports = router;

@@ -18,7 +18,6 @@ class StatsModel extends Observable {
     if (result.message === "jwt expired") {
       removeToken();
     }
-    console.log(result);
     if (result.success) {
       result = this.addPercent(result);
     }

@@ -35,7 +35,6 @@ class CalendarModel extends Observable {
       year: year,
       month: month,
     };
-    console.log(result);
     this.notify(result);
   }
 }
