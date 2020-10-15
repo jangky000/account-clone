@@ -11,15 +11,43 @@ class StatsModel extends Observable {
   async getCateExpense() {
     const year = globalNavModel.year;
     const month = globalNavModel.month;
-    const result = await fetchAPI(
+    let result = await fetchAPI(
       "GET",
       `/api/status/category/expense/${year}/${month}`
     );
     if (result.message === "jwt expired") {
       removeToken();
     }
-    // console.log(result);
+    console.log(result);
+    if (result.success) {
+      result = this.addPercent(result);
+    }
     this.notify(result);
+  }
+
+  addPercent(result) {
+    const cateStatus = result.cateStatus;
+    const tot_sum = Object.keys(cateStatus).reduce((acc, key) => {
+      acc += cateStatus[key].total_money;
+      return acc;
+    }, 0);
+
+    const new_cateStatus = Object.keys(cateStatus).reduce((arr, key) => {
+      const total_money = cateStatus[key].total_money;
+      const percent = Math.round((total_money / tot_sum) * 100);
+      arr.push({
+        ...cateStatus[key],
+        percent: percent,
+      });
+      return arr;
+    }, []);
+
+    new_cateStatus.sort((a, b) => {
+      return b.percent - a.percent;
+    });
+
+    result.cateStatus = new_cateStatus;
+    return result;
   }
 }
 

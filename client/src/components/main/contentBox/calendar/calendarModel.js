@@ -29,7 +29,12 @@ class CalendarModel extends Observable {
       this.notify(income);
       return;
     }
-    const result = { expense: expense.dateStatus, income: income.dateStatus };
+    const result = {
+      expense: expense.dateStatus,
+      income: income.dateStatus,
+      year: year,
+      month: month,
+    };
     console.log(result);
     this.notify(result);
   }

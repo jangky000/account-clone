@@ -1,0 +1,35 @@
+:root {
+  --tableBorder: #6e6e6e;
+}
+
+.bar_box {
+  margin: 20px auto;
+}
+
+.bar_box table {
+  width: 100%;
+  border-top: 2px solid var(--tableBorder);
+  border-bottom: 2px solid var(--tableBorder);
+}
+
+.bar_box tr {
+  border-top: 1px solid var(--tableBorder);
+  border-bottom: 1px solid var(--tableBorder);
+}
+
+.bar_box td {
+  padding: 10px 0;
+}
+
+.bar_box td:nth-child(3) {
+  text-align: center;
+}
+
+.bar_box td:nth-child(4) {
+  text-align: right;
+}
+
+.barChart {
+  width: 100%;
+  height: 1rem;
+}

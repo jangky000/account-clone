@@ -9,7 +9,6 @@ class CalendarView {
       </div>
     `;
     $("#selected_content").innerHTML = html;
-    drawCalendar(".calendar_box", 2020, 10);
   }
 
   update(data) {
@@ -17,6 +16,7 @@ class CalendarView {
       location.reload();
       return;
     }
+    drawCalendar(".calendar_box", data.year, data.month);
     const income = data.income;
     Object.keys(income).forEach((key) => {
       $(`#day${key.slice(-2)}`).insertAdjacentHTML(

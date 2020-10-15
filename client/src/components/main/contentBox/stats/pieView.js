@@ -1,8 +1,8 @@
-import scss from "./stats.scss";
+import scss from "./pie.scss";
 import { $ } from "@utils/tools.js";
 import statusModel from "./statsModel.js";
 
-class StatusView {
+class PieView {
   constructor() {
     this.r = 100;
     this.roundLen = 2 * Math.PI * this.r;
@@ -21,13 +21,13 @@ class StatusView {
     this.pieBox = null;
   }
   render() {
-    const pieHTML = `
-      <div class="pie_box">
-        <svg id="pieChart" width="600" height="600">
+    const html = `
+      <div class="pie_box" style="height:600px;">
+        <svg id="pieChart" width="600px" height="600px">
         </svg>
       </div>
     `;
-    $("#selected_content").innerHTML = pieHTML;
+    $("#selected_content").innerHTML = html;
     this.pieBox = $(".pie_box");
   }
 
@@ -42,56 +42,38 @@ class StatusView {
   }
 
   async renderPieChart(cateStatus) {
-    const tot_sum = Object.keys(cateStatus).reduce((acc, key) => {
-      acc += cateStatus[key].total_money;
-      return acc;
-    }, 0);
-    const percentList = Object.keys(cateStatus).reduce((arr, key) => {
-      const money = cateStatus[key].total_money;
-      const percent = Math.round((money / tot_sum) * 100);
-      arr.push({
-        money: money,
-        percent: percent,
-        catename: cateStatus[key].catename,
-        cateno: cateStatus[key].cateno,
-      });
-      return arr;
-    }, []);
-
-    percentList.sort((a, b) => {
-      return b.percent - a.percent;
-    });
-    // console.log(percentList);
-    let html = "";
-    for (let i = 0; i < percentList.length; i++) {
-      html += this.piePart(
-        i + 1,
-        percentList[i].percent,
-        percentList[i].cateno,
-        percentList[i].catename
-      );
-    }
     const pieChart = $("#pieChart");
     if (!pieChart) return;
+
+    if (!Object.keys(cateStatus).length) {
+      this.pieBox.innerHTML = "소비 내역이 없습니다.";
+    }
+
+    let html = "";
+    for (let i = 0; i < cateStatus.length; i++) {
+      html += this.piePart(i + 1, cateStatus[i]);
+    }
     pieChart.innerHTML = html;
+
     await this.waitMS(1000);
+
     let prevPercent = 0;
-    for (let i = 0; i < percentList.length; i++) {
-      prevPercent = this.css(i + 1, percentList[i].percent, prevPercent);
+    for (let i = 0; i < cateStatus.length; i++) {
+      prevPercent = this.css(i + 1, cateStatus[i].percent, prevPercent);
       if (!prevPercent) break;
     }
   }
 
-  piePart(num, percent, cateno, catename) {
+  piePart(num, partdata) {
     const html = `
       <circle class="piePart pie${num}"
-        data-percent="${percent}" fill="transparent" 
+        data-percent="${partdata.percent}" fill="transparent" 
         cx="${2 * this.r + 100}" cy="${2 * this.r + 100}" r="${this.r}" 
         stroke-width="${2 * this.r}"
       />
       <polyline class="piePart tagline${num}" stroke-width="1" stroke="#5f5f5f" fill="transparent"/>
     `;
-    const div = `<div class="tagBox tag${num}" data-cateno="${cateno}">${catename}</div>`;
+    const div = `<div class="tagBox tag${num}" data-cateno="${partdata.cateno}">${partdata.catename} ${partdata.percent}%</div>`;
     this.pieBox.insertAdjacentHTML("beforeend", div);
     return html;
   }
@@ -170,6 +152,6 @@ class StatusView {
   }
 }
 
-const statusView = new StatusView();
-statusModel.subscribe(statusView);
-export default statusView;
+const pieView = new PieView();
+statusModel.subscribe(pieView);
+export default pieView;

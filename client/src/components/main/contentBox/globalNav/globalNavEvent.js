@@ -1,7 +1,9 @@
 // Views
 import accountLogView from "../accountLog/accountLogView.js";
 import calendarView from "../calendar/calendarView.js";
-import statusView from "../stats/statsView.js";
+import pieView from "../stats/pieView.js";
+import barView from "../stats/barView.js";
+import lineView from "../stats/lineView.js";
 
 // models
 import globalNavModel from "./globalNavModel.js";
@@ -61,8 +63,9 @@ class GlobalNavEvent {
       calendarView.render();
       calendarModel.getCalendarIE();
     } else if (classList.contains("stats")) {
-      statusView.render();
+      pieView.render();
       statsModel.getCateExpense();
+      barView.render();
     }
   }
 }
