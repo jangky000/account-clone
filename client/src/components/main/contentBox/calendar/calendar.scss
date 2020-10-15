@@ -4,13 +4,12 @@
 
 .calendar_box .calendarContainer {
   width: 100%;
-  margin: 20px;
+  margin: 20px 0;
 }
 
 .calendar_box .calendarContainer table {
   margin: 20px auto;
   font-size: 16px;
-  text-align: center;
   width: 100%;
   border-spacing: 0px;
 }
@@ -19,11 +18,20 @@
   padding: 20px 0;
   font-weight: bold;
   border: 1px solid rgb(58, 58, 58);
+  position: relative;
 }
 
 .calendar_box .calendarContainer table td {
-  width: 10vw;
+  width: 10%;
   height: 10vw;
   border: 1px solid rgb(58, 58, 58);
   border-radius: 50%;
+  text-align: right;
+  vertical-align: bottom;
+  position: relative;
+}
+.calendar_box .daynum {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

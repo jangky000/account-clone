@@ -18,7 +18,7 @@ class StatsModel extends Observable {
     if (result.message === "jwt expired") {
       removeToken();
     }
-    console.log(result);
+    // console.log(result);
     this.notify(result);
   }
 }

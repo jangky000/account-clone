@@ -164,3 +164,5 @@ http://101.101.210.76:8000/
 ### day4
 
 - Client 파이 차트 태그 추가
+- Client Calendar 모델 추가
+- Client Calendar 조회 기능 완성

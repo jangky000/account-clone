@@ -7,6 +7,7 @@ import statusView from "../stats/statsView.js";
 import globalNavModel from "./globalNavModel.js";
 import accountLogModel from "../accountLog/accountLogModel.js";
 import statsModel from "../stats/statsModel.js";
+import calendarModel from "../calendar/calendarModel.js";
 
 import { $, $All } from "@utils/tools.js";
 
@@ -58,6 +59,7 @@ class GlobalNavEvent {
       accountLogModel.getAccountLog(globalNavModel.year, globalNavModel.month); // model + view 업데이트
     } else if (classList.contains("calendar")) {
       calendarView.render();
+      calendarModel.getCalendarIE();
     } else if (classList.contains("stats")) {
       statusView.render();
       statsModel.getCateExpense();

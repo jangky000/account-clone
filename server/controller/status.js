@@ -87,8 +87,7 @@ const statusDateFormatting = (mode, rows) => {
   rows.forEach((e) => {
     const row = e.dataValues;
     const date = row.date;
-    const total_money =
-      mode == "I" ? parseInt(row.total_money) : -parseInt(row.total_money);
+    const total_money = parseInt(row.total_money);
     dateStatus[date] = {
       date: date,
       total_money: total_money,

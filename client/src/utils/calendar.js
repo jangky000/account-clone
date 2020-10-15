@@ -49,10 +49,12 @@ function makeCalendar(year, month) {
         if (j === 0) {
           td.classList.add("sunday");
         }
-        // td.dataset.date = `${month}월 ${countDay + 1}일`;
+        td.id = "day" + (countDay + 1).toString().padStart(2, "0");
         td.dataset.fdate = fullDate;
       }
-      td.textContent = startCount ? ++countDay : "";
+      td.innerHTML = startCount
+        ? `<div class='daynum'>${++countDay}</div>`
+        : "";
       if (countDay === lastDay.getDate()) {
         startCount = 0;
       }
@@ -60,8 +62,6 @@ function makeCalendar(year, month) {
     }
     tbody.append(tr);
     if (countDay >= lastDay.getDate()) {
-      // console.log(countDay);
-      // console.log(lastDay.getDate());
       break;
     }
   }
