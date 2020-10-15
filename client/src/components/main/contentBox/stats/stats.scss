@@ -2,7 +2,29 @@
   --roundLen: 700;
 }
 
+.pie_box {
+  width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#pieChart {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .piePart {
   stroke-dasharray: 0 var(--roundLen);
   transition: stroke-dasharray 1s ease-in-out;
+}
+
+.tagBox {
+  width: fit-content;
+  border: 3px solid #8f8f8f;
+  border-radius: 10px;
+  background-color: #fff;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }

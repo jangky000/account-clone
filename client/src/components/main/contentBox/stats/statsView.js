@@ -18,13 +18,17 @@ class StatusView {
       "#e065ff",
       "#ff65c4",
     ];
+    this.pieBox = null;
   }
   render() {
     const pieHTML = `
-      <svg id="pieChart" width="400" height="400">
-      </svg>
+      <div class="pie_box">
+        <svg id="pieChart" width="600" height="600">
+        </svg>
+      </div>
     `;
     $("#selected_content").innerHTML = pieHTML;
+    this.pieBox = $(".pie_box");
   }
 
   update(data) {
@@ -60,33 +64,42 @@ class StatusView {
     // console.log(percentList);
     let html = "";
     for (let i = 0; i < percentList.length; i++) {
-      html += this.piePart(i + 1, percentList[i].percent);
+      html += this.piePart(
+        i + 1,
+        percentList[i].percent,
+        percentList[i].cateno,
+        percentList[i].catename
+      );
     }
     const pieChart = $("#pieChart");
     if (!pieChart) return;
     pieChart.innerHTML = html;
     await this.waitMS(1000);
-    let offset = 0;
+    let prevPercent = 0;
     for (let i = 0; i < percentList.length; i++) {
-      offset = this.css(i + 1, percentList[i].percent, offset);
-      if (!offset) break;
+      prevPercent = this.css(i + 1, percentList[i].percent, prevPercent);
+      if (!prevPercent) break;
     }
   }
 
-  piePart(num, percent) {
+  piePart(num, percent, cateno, catename) {
     const html = `
       <circle class="piePart pie${num}"
         data-percent="${percent}" fill="transparent" 
-        cx="${2 * this.r}" cy="${2 * this.r}" r="${this.r}" 
+        cx="${2 * this.r + 100}" cy="${2 * this.r + 100}" r="${this.r}" 
         stroke-width="${2 * this.r}"
       />
+      <polyline class="piePart tagline${num}" stroke-width="1" stroke="#5f5f5f" fill="transparent"/>
     `;
+    const div = `<div class="tagBox tag${num}" data-cateno="${cateno}">${catename}</div>`;
+    this.pieBox.insertAdjacentHTML("beforeend", div);
     return html;
   }
 
-  css(num, percent, offset) {
+  css(num, percent, prevPercent) {
     const pie = $(`.pie${num}`);
     if (!pie) return null;
+    const offset = (this.roundLen * prevPercent) / 100 - this.roundLen / 4;
     const pieLen = (this.roundLen * percent) / 100;
 
     pie.style.setProperty(
@@ -95,9 +108,59 @@ class StatusView {
     );
     pie.style.setProperty("stroke", this.colors[num - 1]);
     pie.style.setProperty("stroke-dashoffset", -offset);
-    return pieLen;
+
+    const tagLine = $(`.tagline${num}`);
+    const points = this.tagLineOpt(
+      this.r * 2 + 100,
+      this.r * 2 + 100,
+      this.r * 2,
+      this.r * 2 + 20,
+      prevPercent * 3.6,
+      percent * 3.6
+    );
+    tagLine.setAttribute("points", points.join(", "));
+    tagLine.style.setProperty("stroke-dasharray", `40 40`);
+
+    const degrees = prevPercent * 3.6 + (percent * 3.6) / 2;
+    const transform =
+      degrees > 180 ? "translate(-100%, -50%)" : "translate(0, -50%)";
+    const tag = $(`.tag${num}`);
+    tag.style.setProperty("position", `absolute`);
+    tag.style.setProperty("left", `${points[4]}px`);
+    tag.style.setProperty("top", `${points[5]}px`);
+    tag.style.setProperty("transform", transform);
+    tag.style.setProperty("opacity", 1);
+
+    return percent;
   }
 
+  tagLineOpt(x, y, radiusIn, radiusOut, startAngle, endAngle) {
+    const degrees = startAngle + endAngle / 2;
+    function _toXY(cX, cY, r) {
+      const rad = ((degrees - 90) * Math.PI) / 180.0;
+      return {
+        x: cX + r * Math.cos(rad),
+        y: cY + r * Math.sin(rad),
+      };
+    }
+    const startIn = _toXY(x, y, radiusIn);
+    const startOut = _toXY(x, y, radiusOut);
+    const endOut =
+      degrees < 180
+        ? { x: startOut.x + 20, y: startOut.y }
+        : { x: startOut.x - 20, y: startOut.y };
+    const points = [
+      startIn.x,
+      startIn.y,
+      startOut.x,
+      startOut.y,
+      endOut.x,
+      endOut.y,
+    ];
+    return points;
+  }
+
+  // utils
   waitMS(ms) {
     return new Promise((res, rej) => {
       setTimeout(() => {
