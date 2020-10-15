@@ -1,5 +1,5 @@
 import scss from "./accountLog.scss";
-import { $ } from "@utils/tools.js";
+import { $, $All } from "@utils/tools.js";
 import accountLogModel from "./accountLogModel.js";
 
 class AccountLogView {
@@ -7,6 +7,7 @@ class AccountLogView {
     $("#selected_content").innerHTML = "";
     this.accountInputRender();
     this.accountBoxRender();
+    this.addEvent();
   }
 
   accountInputRender() {
@@ -133,7 +134,7 @@ class AccountLogView {
 
   lbodyHTML(content) {
     const html = `
-    <li class="account_lbody flexRow flexHCenter">
+    <li class="account_lbody flexRow flexHCenter mode${content.iemode}">
       <div>
         <span class="category ${
           content.iemode == "I" ? "cate_income" : "cate_expense"
@@ -155,6 +156,50 @@ class AccountLogView {
     </li>
     `;
     return html;
+  }
+
+  addEvent() {
+    $("#account_income").addEventListener("change", this.checkBoxHandler);
+    $("#account_expense").addEventListener("change", this.checkBoxHandler);
+  }
+
+  checkBoxHandler(e) {
+    const target = e.target;
+    if (target.id === "account_income") {
+      const incomes = $All(".modeI");
+      if (target.checked) {
+        //remove hidden
+        incomes.forEach((income) => {
+          if (income.classList.contains("hidden")) {
+            income.classList.remove("hidden");
+          }
+        });
+      } else {
+        // add hidden
+        incomes.forEach((income) => {
+          if (!income.classList.contains("hidden")) {
+            income.classList.add("hidden");
+          }
+        });
+      }
+    } else if (target.id === "account_expense") {
+      const expenses = $All(".modeE");
+      if (target.checked) {
+        //remove hidden
+        expenses.forEach((expense) => {
+          if (expense.classList.contains("hidden")) {
+            expense.classList.remove("hidden");
+          }
+        });
+      } else {
+        // add hidden
+        expenses.forEach((expense) => {
+          if (!expense.classList.contains("hidden")) {
+            expense.classList.add("hidden");
+          }
+        });
+      }
+    }
   }
 }
 

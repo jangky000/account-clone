@@ -169,6 +169,7 @@ http://101.101.210.76:8000/
 - Client Bar 차트 조회 기능 완성
 - Client 로그아웃 추가
 - Client globalNavEvent 버그 수정
+- Client 내역 filter 추가
 
 ### 진행할 사항
 
