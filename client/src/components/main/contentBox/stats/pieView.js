@@ -62,7 +62,7 @@ class PieView {
 
     let prevPercent = 0;
     for (let i = 0; i < cateStatus.length; i++) {
-      prevPercent = this.css(i + 1, cateStatus[i].percent, prevPercent);
+      prevPercent += this.css(i + 1, cateStatus[i].percent, prevPercent);
       if (!prevPercent) break;
     }
   }
